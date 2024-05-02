@@ -259,6 +259,18 @@
     top: 5px;
     right: 0px;
 }
+.showmore{
+    width: 136px;
+    height: 45px;
+    margin-top: 20px;
+    text-align: center;
+    gap: 0px;
+    opacity: 0px;
+    background: #FF7373;
+    color:#FFFFFF;
+    border: 2px solid #ff7373;
+    border-radius: 21px;
+}
   @media only screen and (max-width: 500px) {
     /* Styles for screens up to 600px wide */
     .regbox{

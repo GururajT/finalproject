@@ -351,7 +351,7 @@ export default function Homepage() {
                     ))}
                     </div>
                 )}
-                {storySlide.length > 4 && (
+                {storySlide?.length > 4 && (
                     <button onClick={toggleShowMore} className={style.showmore}>See {more?("less"):("more")}</button>
                     )}
                 </div>
