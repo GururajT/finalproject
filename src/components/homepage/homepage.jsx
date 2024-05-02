@@ -27,6 +27,8 @@ export default function Homepage() {
     const [addSlide,setAddSlide]=useState(false)
     const [storySlide,setStorySlide]=useState([])
     const [currentStory,setCurrentStory]=useState({})
+    const [showMore, setShowMore] = useState(false);
+    const [more,setMore]=useState(false)
     const [isMobileView, setIsMobileView] = useState(false);
     const DEFAULT_CATEGORIES=[
         {
@@ -62,6 +64,10 @@ export default function Homepage() {
         setLoginFormData({...loginFormData,[e.target.name]:e.target.value})
         console.log(loginFormData)
     }
+    const toggleShowMore = () => {
+        setShowMore(!showMore);
+        setMore(!more)
+      };
     const handleRegister=async(e)=>{
         e.preventDefault()
         if( !formData.Username || !formData.password){
@@ -297,7 +303,7 @@ export default function Homepage() {
                     </div>):(<div>No data</div>)
                 }
                 <div className={style.storyslides} >
-                {storySlide?.map((data)=>(
+                {storySlide?.slice(0, 4).map((data)=>(
                     
                     <div className={style.storyImage} onClick={()=>handleslide(data)}
                      src={data["slides"][0].image_url}
@@ -319,7 +325,35 @@ export default function Homepage() {
                     
                 ))}
                 </div>
-                
+                {showMore && (
+                    <div className={style.storyslides}>
+                    {storySlide.slice(4).map((data, index) => (
+                        <div
+                        key={index +4}
+                        className={style.storyImage}
+                        onClick={() => handleslide(data)}
+                        style={{
+                            backgroundImage: `url(${data.slides[0].image_url})`,
+                            backgroundSize: 'cover',
+                            backgroundRepeat: 'no-repeat',
+                            color: 'white',
+                            margin: '0px',
+                            width: '290px',
+                            height: '459px',
+                            borderRadius: '18px',
+                        }}
+                        >
+                        <div className={style.slidecontent}>
+                            <h2>{data.slides[0].heading}</h2>
+                            <p>{data.slides[0].description}</p>
+                        </div>
+                        </div>
+                    ))}
+                    </div>
+                )}
+                {storySlide.length > 4 && (
+                    <button onClick={toggleShowMore} className={style.showmore}>See {more?("less"):("more")}</button>
+                    )}
                 </div>
             </div>
       )}
@@ -335,7 +369,7 @@ export default function Homepage() {
                     </div>):(<div>No data</div>)
                 }
                 <div className={style.storyslides} >
-                {storySlide?.map((data)=>(
+                {storySlide?.slice(0, 4).map((data)=>(
                     
                     <div className={style.storyImage} onClick={()=>handleslide(data)}
                      src={data["slides"][0].image_url}
@@ -357,7 +391,35 @@ export default function Homepage() {
                     
                 ))}
                 </div>
-                
+                {showMore && (
+                    <div className={style.storyslides}>
+                    {storySlide.slice(4).map((data, index) => (
+                        <div
+                        key={index +4}
+                        className={style.storyImage}
+                        onClick={() => handleslide(data)}
+                        style={{
+                            backgroundImage: `url(${data.slides[0].image_url})`,
+                            backgroundSize: 'cover',
+                            backgroundRepeat: 'no-repeat',
+                            color: 'white',
+                            margin: '0px',
+                            width: '290px',
+                            height: '459px',
+                            borderRadius: '18px',
+                        }}
+                        >
+                        <div className={style.slidecontent}>
+                            <h2>{data.slides[0].heading}</h2>
+                            <p>{data.slides[0].description}</p>
+                        </div>
+                        </div>
+                    ))}
+                    </div>
+                )}
+                {storySlide.length > 4 && (
+                    <button onClick={toggleShowMore} className={style.showmore}>See {more?("less"):("more")}</button>
+                    )}
                 </div>
             </div>
       )}
